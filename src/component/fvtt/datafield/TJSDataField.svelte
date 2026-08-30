@@ -44,11 +44,19 @@
    import { Hashing }                  from '#runtime/util';
 
    /**
+    * @import { MinimalWritable }         from '#runtime/svelte/store/util';
+    *
+    * @import {
+    *    TJSDataFieldOptions,
+    *    TJSDataFieldValidationCallback}  from './types';
+    */
+
+   /**
     * Combined configuration object for all props.
     *
     * Individual props take precedence over corresponding properties defined in `input`.
     *
-    * @type {import('./types').TJSDataFieldOptions | undefined}
+    * @type {TJSDataFieldOptions | undefined}
     */
    export let input = void 0;
 
@@ -84,7 +92,7 @@
     * Callback invoked when DataField validation fails while processing user input or synchronizing an existing store
     * value with a changed DataField.
     *
-    * @type {import('./types').TJSDataFieldValidationCallback | undefined}
+    * @type {TJSDataFieldValidationCallback | undefined}
     */
    export let onValidationFailure = void 0;
 
@@ -105,7 +113,7 @@
     * The component automatically updates the store when user input changes and reacts to external store updates by
     * synchronizing with the hosted DataField.
     *
-    * @type {import('#runtime/svelte/store/util').MinimalWritable<unknown> | undefined}
+    * @type {MinimalWritable<unknown> | undefined}
     */
    export let store = void 0;
 
@@ -114,10 +122,7 @@
     *
     * The `undefined` initial mode preserves the prior first-check semantics of uninitialized local snapshots.
     *
-    * @type {PropChangeTracker<
-    *    import('./types').TJSDataFieldOptions,
-    *    'datafield' | 'enabled' | 'groupConfig' | 'inputConfig'
-    * >}
+    * @type {PropChangeTracker<TJSDataFieldOptions, 'datafield' | 'enabled' | 'groupConfig' | 'inputConfig'>}
     */
    const constructionChangeTracker = new PropChangeTracker({
       keys: ['datafield', 'enabled', 'groupConfig', 'inputConfig'],
@@ -132,7 +137,7 @@
    /**
     * Effective resolved component properties.
     *
-    * @type {import('./types').TJSDataFieldOptions}
+    * @type {TJSDataFieldOptions}
     */
    const props = {
       datafield: void 0,
@@ -167,7 +172,7 @@
    /**
     * Normalized combined component options.
     *
-    * @type {import('./types').TJSDataFieldOptions}
+    * @type {TJSDataFieldOptions}
     */
    let inputOptions = {};
 
